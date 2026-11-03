@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngineInternal;
+using Gamekit3D;
+using UnityEngine.Events;
 
 public class WS1 : MonoBehaviour
 {
 
     public int myNumber = 0;
     private Rigidbody2D rb;
+    public UnityEvent onStart;
+    private float timer = 0;
     
     // Variabler:
     bool exampleBool = true; // Påstående
@@ -17,8 +22,17 @@ public class WS1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+            onStart.Invoke();
+            myNumber++;
+            rb = GetComponent<Rigidbody2D>();
+            myNumber = Random.Range(0, 10);
+            Debug.Log(myNumber);
 
+            for (int counter = 0; counter < 10; counter++)
+            {
+                Debug.Log(counter);
+            }
+            
     }
 
     // Update is called once per frame
@@ -28,6 +42,8 @@ public class WS1 : MonoBehaviour
         {
             YSpeed();
         }
+        timer =+ Time.deltaTime;
+        Debug.Log(timer);
     }
 
     public void YSpeed()

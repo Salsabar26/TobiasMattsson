@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WS1
   myNumber: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &904613651
 SpriteRenderer:
   serializedVersion: 2
