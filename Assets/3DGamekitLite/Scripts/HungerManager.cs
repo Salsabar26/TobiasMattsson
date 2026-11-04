@@ -6,6 +6,19 @@ public class HungerManager : MonoBehaviour
     
     private float timer = 0;
 
+    private void DealDamage()
+    {
+        Damageable.DamageMessage dmg = new Damageable.DamageMessage
+        {
+            amount = 1,
+            damager = this,
+            direction = Vector3.zero,
+            damageSource = Vector3.zero,
+            throwing = false,
+            stopCamera = false, 
+            ;
+        };
+    }
 
     
         // Start is called once before the first execution of Update after the MonoBehaviour is created
