@@ -2,25 +2,12 @@ using UnityEngine;
 using Gamekit3D;
 
 public class HungerManager : MonoBehaviour
-{
-    
-    private float timer = 0;
-
-    private void DealDamage()
-    {
-        Damageable.DamageMessage dmg = new Damageable.DamageMessage
-        {
-            amount = 1,
-            damager = this,
-            direction = Vector3.zero,
-            damageSource = Vector3.zero,
-            throwing = false,
-            stopCamera = false, 
-            ;
-        };
-    }
-
-    
+{    
+        private float timer = 0f;
+        [SerializeField] private Damageable damageTarget;
+        [SerializeField] private float damageTime = 10f;
+        [SerializeField] private int damageAmount = 1;
+        
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -32,11 +19,26 @@ public class HungerManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             Debug.Log(timer);
-            if (timer >= 10)
-            { 
-                timer = 0;
+            if (timer >= damageTime)
+            {
+                Damageable.DamageMessage msg = new Damageable.DamageMessage()
+                {
+                    damager = this,
+                    amount = damageAmount,
+                    damageSource = new Vector3(x: 0, y: 0, z: 0).normalized,
+                    direction = new Vector3(x: 0, y: 0, z: 0).normalized,
+                    throwing = false,
+                    stopCamera = false
+                };
+                
+                damageTarget.ApplyDamage(msg);
+                ResetTimer();
             }
-            
+        }
+
+        public void ResetTimer()
+        {
+            timer = 0f;
         }
     
 }
