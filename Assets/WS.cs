@@ -1,10 +1,13 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class WS : MonoBehaviour
 {
 
+    public float timer = 5f;
+    
     public EventInstance instans;
     public EventReference referens;
     
@@ -18,6 +21,10 @@ public class WS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            instans.setParameterByName("Prog", 1);
+        }
     }
 }
